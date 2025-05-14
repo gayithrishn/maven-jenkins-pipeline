@@ -22,4 +22,15 @@ steps:
     testResultsFormat: 'JUnit'
     failTaskOnMissingResultsFile: true
   displayName: 'Publish Maven Test Results'
+  
+- script: mvn surefire-report:report
+  displayName: 'Generate HTML Test Report'
+  
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'target/site'
+    ArtifactName: 'TestHTMLReport'
+    publishLocation: 'Container'
+  displayName: 'Publish HTML Test Report Artifact'
+
    
